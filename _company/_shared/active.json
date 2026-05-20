@@ -2,7 +2,6 @@
   "_migrated": true,
   "_migrated_v2": true,
   "secretary": {
-<<<<<<< HEAD
     "activatedAt": "2026-05-20T00:10:46.432Z",
     "seeded": true
   },
@@ -34,34 +33,4 @@
     "activatedAt": "2026-05-20T00:10:46.432Z",
     "seeded": true
   },
-  "_migrated_v3": true
-=======
-    "activatedAt": "2026-05-12T09:07:37.534Z",
-    "seeded": true
-  },
-  "writer": {
-    "activatedAt": "2026-05-12T09:07:37.534Z",
-    "seeded": true
-  },
-  "designer": {
-    "activatedAt": "2026-05-12T09:07:37.534Z",
-    "seeded": true
-  },
-  "developer": {
-    "activatedAt": "2026-05-12T09:14:08.057Z"
-  },
-  "researcher": {
-    "activatedAt": "2026-05-12T09:14:25.325Z"
-  },
-  "business": {
-    "activatedAt": "2026-05-12T09:14:41.270Z"
-  },
-  "_migrated_v3": true,
-  "instagram": {
-    "activatedAt": "2026-05-15T01:57:29.041Z"
-  },
-  "youtube": {
-    "activatedAt": "2026-05-15T11:16:14.391Z"
-  }
->>>>>>> origin/main
-}
+  "_migrated_v3": true}

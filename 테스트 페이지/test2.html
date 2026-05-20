@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Global Daily Letter</title>
+    <!-- 페이팔 SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=CURRENCY_CODE"></script>
+</head>
+
+<body>
+    <!-- 편지 테마 선택 -->
+    <div id="themes">
+        <h2>편지 테마 선택</h2>
+        <button onclick="generateLetter('encouragement')">자아 존중감 (인용문 1)</button>
+        <button onclick="generateLetter('birthday')">생일 축하 (인용문 2)</button>
+        <button onclick="generateLetter('healing')">위로 (인용문 3)</button>
+    </div>
+
+    <!-- 편지 생성 영역 -->
+    <div id="letter-container"></div>
+
+    <!-- 페이팔 버튼 -->
+    <div id="paypal-button-container"></div>
+
+    <script>
+        // 인용문 기반 테마 콘텐츠 (간단 예시)
+        const themes = {
+            encouragement: `
+        <h3>안녕하세요, ${user.name || '사용자님'}!</h3>
+        <p>"쓸쓸함이 마음을 덮어서..." - 당신의 하루가 조금 더 따뜻해지길 바랄게요.</p>
+        <div id="letter-content"></div>
+      `,
+            birthday: `
+        <h3>🎉 생일 축하합니다!</h3>
+        <p>"2월의 생일을 정말 축하해..." - 사랑하는 사람들과 함께 보내는 따뜻한 하루가 되길.</p>
+        <div id="letter-content"></div>
+      `,
+            healing: `
+        <h3>🌿 마음이 편안해질 때</h3>
+        <p>"마음이 참 지칠 거야. 하지만 봄이 너를 감싸주기를..." - 작은 행복을 찾아보세요.</p>
+        <div id="letter-content"></div>
+      `,
+        };
+
+        // 기본 편지 내용 (실제 사용 시 더 확장 가능)
+        const letterContents = {
+            encouragement: `
+        <p>"말하지 않아도 좋은 마음들이 드러나는 사람"을 만나길 바랄게요.</p>
+        <ul><li>좋아하는 음식을 먹으세요</li><li>홀로 외롭게 지내지 마세요</li></ul>
+      `,
+            birthday: `
+        <p>"고생했구나, 그 모든 것들을 도로 삼키느라..." - 오늘 하루는 특별해져요.</p>
+        <div id="birthday-details"></div>
+      `,
+            healing: `
+        <p>"소소한 행복이 그리운 이 현실"에 작은 기쁨을 찾아보세요.</p>
+        <ul><li>봄을 상상하며 숨 쉬세요</li><li>친구에게 일문 보내주세요</li></ul>
+      `,
+        };
+
+        // 페이팔 버튼 설정 (기본 금액 $1, 실제 운영 시 다국어 로케일 지원 필요)
+        paypal.Buttons({
+            createOrder: function (data, actions) {
+                return actions.order.create({
+                    purchase_units: [{ amount: { value: '1' } }] // 기본 가격
+                });
+            },
+            onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                    alert('결제 완료! 편지가 생성됩니다.');
+                    generateLetter(currentTheme); // 결제 후 자동 편지 생성
+                });
+            }
+        }).render('#paypal-button-container');
+
+        // 테마 선택 및 편지 표시
+        function generateLetter(theme) {
+            currentTheme = theme;
+            document.getElementById('letter-container').innerHTML = themes[theme];
+            // 실제 운영 시: AI/알고리즘으로 사용자 데이터 기반 내용 자동 생성
+            document.getElementById(`letter-content`).innerText = letterContents[theme];
+        }
+    </script>
+</body

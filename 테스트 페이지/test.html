@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Wisdom - Warm Letters for Your Heart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #fdfbf7; color: #334155; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .glass-panel { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255, 255, 255, 1); }
+        .letter-paper { background-color: #fffdf7; background-image: linear-gradient(90deg, rgba(200,0,0,.03) 50%, transparent 0), linear-gradient(rgba(200,0,0,.03) 50%, transparent 0); background-size: 2px 2px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); border: 1px solid #f1f5f9; }
+        .btn-primary { background: #1e293b; color: #ffffff; transition: all 0.3s ease; }
+        .btn-primary:hover { background: #334155; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .typewriter-text { border-right: 2px solid #cbd5e1; white-space: pre-wrap; animation: blink-caret .75s step-end infinite; }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #cbd5e1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        .blur-text { color: transparent; text-shadow: 0 0 8px rgba(51,65,85,0.5); user-select: none; }
+        
+        @media print {
+            body * { visibility: hidden; }
+            #printable-letter, #printable-letter * { visibility: visible; }
+            #printable-letter { position: absolute; left: 0; top: 0; width: 100%; box-shadow: none; border: none; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
+    <header class="text-center mb-10 w-full max-w-3xl animate-fade-in no-print">
+        <h1 class="font-serif text-4xl md:text-5xl font-bold text-slate-800 mb-4">Daily Wisdom</h1>
+        <p class="text-slate-500 text-lg md:text-xl">Share your heavy heart. Receive a warm letter to guide you.</p>
+    </header>
+
+    <main class="w-full max-w-3xl relative">
+        <!-- Input Form Area -->
+        <div id="input-section" class="glass-panel rounded-2xl p-6 md:p-10 transition-all duration-500 no-print">
+            <label for="user-story" class="block text-sm font-medium text-slate-700 mb-3">
+                What's on your mind? Tell us your story, worries, or pain...
+            </label>
+            <div class="relative">
+                <textarea id="user-story" rows="8" maxlength="2000" 
+                    class="block w-full rounded-xl border-slate-200 bg-white/50 p-4 text-slate-800 shadow-sm focus:border-slate-400 focus:ring-slate-400 sm:text-lg transition-colors placeholder:text-slate-400"
+                    placeholder="I have been feeling exhausted lately because..."></textarea>
+                <div class="absolute bottom-3 right-4 text-xs text-slate-400">
+                    <span id="char-count">0</span> / 2000
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <button onclick="submitStory()" class="btn-primary px-8 py-3.5 rounded-full font-medium text-lg w-full sm:w-auto flex items-center justify-center mx-auto">
+                    <span>Send My Story</span>
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Initial Free Response & Premium Unlock -->
+        <div id="freemium-section" class="hidden flex-col items-center w-full mt-8 animate-fade-in no-print">
+            <div class="letter-paper rounded-lg p-8 w-full mb-6 relative overflow-hidden">
+                <p class="font-serif text-xl leading-relaxed text-slate-700 italic">
+                    "I hear the weight in your words. Please know that you are not alone in this feeling. We have carefully analyzed your story..."
+                </p>
+                <!-- Teaser Blur Effect -->
+                <div class="mt-4 blur-text text-lg font-serif italic opacity-70">
+                    Based on your input, it seems you are carrying a lot of invisible burdens. You've been trying so hard to keep everything together while silently struggling. There is a deep psychological reason why you feel this way right now. According to cognitive behavioral patterns, when we face these specific triggers... (Unlock to read the full 500+ word personalized analysis and your specific action step).
+                </div>
+                <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#fffdf7] to-transparent"></div>
+            </div>
+
+            <!-- Premium Lock -->
+            <div id="premium-lock" class="glass-panel rounded-2xl p-8 text-center w-full max-w-lg mt-4 border-2 border-amber-100">
+                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </div>
+                <h3 class="font-serif text-2xl text-slate-800 mb-2">Unlock Your Full Letter</h3>
+                <p class="text-slate-500 text-sm mb-6 leading-relaxed px-4">
+                    Read your complete, personalized psychological analysis and get concrete action steps tailored just for you. Unlock it now for less than a cup of coffee ($2.99).
+                </p>
+                <div id="paypal-button-container" class="w-full flex flex-col justify-center items-center relative z-10"></div>
+                
+                <button onclick="mockPaymentSuccess()" class="mt-4 px-6 py-2 bg-emerald-50 text-emerald-600 border border-emerald-200 rounded-full text-xs font-medium hover:bg-emerald-100 transition-colors">
+                    ✨ [테스트용] 결제 우회 (개발자 전용)
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading State for Full Letter -->
+        <div id="loading-section" class="hidden flex-col items-center justify-center py-20 no-print">
+            <div class="animate-spin mb-6 text-slate-400">
+                <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </div>
+            <p class="text-slate-500 font-serif italic text-lg animate-pulse">Deeply analyzing your story...</p>
+        </div>
+
+        <!-- Full Premium Letter Area -->
+        <div id="full-letter-section" class="hidden flex-col items-center w-full mt-8">
+            <div id="printable-letter" class="letter-paper rounded-lg p-8 md:p-14 w-full mb-8 relative cursor-pointer" onclick="skipTyping()" title="Click to skip animation">
+                <p class="text-xs font-bold tracking-widest uppercase text-slate-400 mb-8 border-b pb-3">Dear Friend,</p>
+                <div id="letter-text" class="font-serif text-xl md:text-2xl leading-relaxed text-slate-700 italic min-h-[200px]"></div>
+                
+                <div class="mt-12 pt-6 border-t border-slate-100">
+                    <h4 class="text-sm font-bold text-slate-800 mb-2 uppercase tracking-wide">Psychological Action Step</h4>
+                    <p id="action-step" class="text-slate-600 leading-relaxed"></p>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap gap-4 justify-center w-full no-print mb-8">
+                <button onclick="copyToClipboard()" class="px-5 py-2.5 bg-white border border-slate-200 text-slate-600 rounded-full text-sm font-medium hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                    Copy Text
+                </button>
+                <button onclick="window.print()" class="px-5 py-2.5 bg-white border border-slate-200 text-slate-600 rounded-full text-sm font-medium hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                    Save as PDF
+                </button>
+            </div>
+
+            <button onclick="resetForm()" class="text-sm text-slate-400 hover:text-slate-600 underline decoration-slate-300 underline-offset-4 transition-colors no-print">
+                Write another story
+            </button>
+        </div>
+
+    </main>
+
+    <footer class="mt-auto py-8 text-center text-slate-400 text-xs no-print">
+        &copy; 2026 Daily Wisdom Global Letters Project.
+    </footer>
+
+    <script>
+        const textarea = document.getElementById('user-story');
+        const charCount = document.getElementById('char-count');
+        textarea.addEventListener('input', () => charCount.textContent = textarea.value.length);
+
+        const mockResponses = [
+            { keywords: ["tired", "exhausted", "hard", "difficult", "work"], letter: "I hear the weight in your words. It must have been a long time since you had a peaceful day or a place to comfortably share your heart. Swallowing the words you wanted to say... you've worked so hard enduring all of that. You've survived days that didn't even feel like your own life. Please remember, just standing where you are right now is a testament to your strength. It's okay to let it out now. You've done more than enough. I am rooting for your happiness, hoping that the difficult days will soon give way to gentle, warm moments.", action: "Based on Self-Compassion theory, try this today: Place your hand over your heart, take a deep breath, and say out loud, 'I am doing the best I can, and that is enough.' Acknowledge your effort without judgment." },
+            { keywords: ["anxious", "future", "fear", "lost", "behind"], letter: "I hear the weight in your words. It's okay, you don't have to be so afraid. You just need to get better little by little. Don't rush. It's natural to feel anxious when you think you're walking in circles while others are moving forward. But they live their lives, and you live yours. Let's focus on becoming better than yesterday, rather than comparing ourselves to others. You are stronger than your fears. You'll soon find yourself shining brighter than you imagined.", action: "Using Cognitive Behavioral therapy principles, when an anxious thought arises today, ask yourself: 'Is this a fact, or just a fear?' Bring your focus back to the present moment by grounding yourself—notice 3 things you can see and 2 things you can touch right now." },
+            { keywords: ["lonely", "alone", "friend", "relationship", "hurt"], letter: "I hear the weight in your words. Relationships where only you put in the effort are so exhausting, aren't they? Feeling lonely even when you're together. I hope you no longer hold onto relationships that only make you ache. Let go of the things that hurt you, and start surrounding yourself with people who truly cherish and love you. Remember, you are worthy of being loved just as you are. I am one of those people rooting for you.", action: "From an Interpersonal theory perspective, it's important to set healthy boundaries. Today, practice saying 'no' to one small thing that drains your energy, and spend that extra 10 minutes doing something solely for yourself." },
+            { keywords: ["sad", "cry", "pain", "hurt", "depressed"], letter: "I hear the weight in your words. You just want to stop hurting. I know the pain hidden behind every forced smile, every time you pretended to be brave when you weren't. If I could, I would wrap my heart around yours to comfort you. Rather than days repeating with pain, I hope your life becomes filled with warmth and moments of love. You don't have to pretend to be okay all the time. Let your tears flow if they must; it's the soul's way of healing.", action: "Based on Emotion-Focused theory, your sadness needs to be felt, not fixed. Find a safe, quiet space today and allow yourself 15 minutes to just feel your emotions without trying to suppress them. Crying is a healthy release." }
+        ];
+
+        const defaultResponse = {
+            letter: "I hear the weight in your words. Life can be overwhelmingly heavy, and it takes immense courage just to endure the days when nothing seems to go right. But please remember, just standing where you are right now is a testament to your strength. You are not alone in this feeling. I am rooting for your happiness, hoping that the difficult days will soon give way to gentle, warm moments.",
+            action: "In Positive Psychology, gratitude can shift our perspective. Before you sleep tonight, write down just one tiny thing that didn't go wrong today. It doesn't have to be big—even a warm cup of coffee counts."
+        };
+
+        let isTyping = false;
+        let currentFullText = "";
+        let typingTimeout;
+        const letterEl = document.getElementById('letter-text');
+        const actionEl = document.getElementById('action-step');
+
+        function getResponse(text) {
+            const lowerText = text.toLowerCase();
+            for (let response of mockResponses) {
+                if (response.keywords.some(kw => lowerText.includes(kw))) return response;
+            }
+            return defaultResponse;
+        }
+
+        function typeWriter(text, speed, callback) {
+            isTyping = true;
+            letterEl.innerHTML = '';
+            letterEl.classList.add('typewriter-text');
+            let i = 0;
+            
+            function type() {
+                if (!isTyping) return; // Aborted due to skip
+                if (i < text.length) {
+                    letterEl.innerHTML += text.charAt(i);
+                    i++;
+                    typingTimeout = setTimeout(type, speed);
+                } else {
+                    finishTyping(callback);
+                }
+            }
+            type();
+        }
+
+        function finishTyping(callback) {
+            isTyping = false;
+            clearTimeout(typingTimeout);
+            letterEl.innerHTML = currentFullText; // ensure full text is rendered
+            letterEl.classList.remove('typewriter-text');
+            if (callback) callback();
+        }
+
+        function skipTyping() {
+            if (isTyping) {
+                finishTyping(() => {
+                    actionEl.style.transition = "opacity 0.3s ease-in";
+                    actionEl.style.opacity = 1;
+                });
+            }
+        }
+
+        function checkRateLimit() {
+            const lastUsed = localStorage.getItem('last_letter_time');
+            if (lastUsed) {
+                const hoursSince = (Date.now() - parseInt(lastUsed)) / (1000 * 60 * 60);
+                if (hoursSince < 24) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function submitStory() {
+            const userText = textarea.value.trim();
+            if (userText.length < 10) {
+                alert("Please share a little more of your story so we can write a meaningful letter for you.");
+                return;
+            }
+
+            // NOTE: Rate limit check is moved here, but we DO NOT setItem yet.
+            /* 임시 테스트를 위해 꺼둡니다.
+            if (!checkRateLimit()) {
+                alert("You have already received a letter today. Please come back tomorrow for more daily wisdom.");
+                return;
+            }
+            */
+
+            document.getElementById('input-section').classList.add('hidden');
+            document.getElementById('freemium-section').classList.remove('hidden');
+            document.getElementById('freemium-section').classList.add('flex');
+            
+            if (!document.getElementById('paypal-button-container').hasChildNodes()) {
+                renderPayPal(userText);
+            }
+        }
+
+        function renderPayPal(userText) {
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{ amount: { value: '2.99' } }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        // Rate limit is counted ONLY AFTER payment succeeds.
+                        localStorage.setItem('last_letter_time', Date.now().toString());
+                        generateFullLetter(userText);
+                    });
+                }
+            }).render('#paypal-button-container');
+        }
+
+        function mockPaymentSuccess() {
+            const userText = textarea.value.trim();
+            localStorage.setItem('last_letter_time', Date.now().toString());
+            generateFullLetter(userText);
+        }
+
+        function generateFullLetter(userText) {
+            document.getElementById('freemium-section').classList.add('hidden');
+            document.getElementById('freemium-section').classList.remove('flex');
+            document.getElementById('loading-section').classList.remove('hidden');
+            document.getElementById('loading-section').classList.add('flex');
+
+            setTimeout(() => {
+                document.getElementById('loading-section').classList.add('hidden');
+                document.getElementById('loading-section').classList.remove('flex');
+                
+                const resultSection = document.getElementById('full-letter-section');
+                resultSection.classList.remove('hidden');
+                resultSection.classList.add('flex', 'animate-fade-in');
+
+                const responseData = getResponse(userText);
+                currentFullText = responseData.letter;
+                
+                actionEl.style.opacity = 0;
+                actionEl.textContent = responseData.action;
+                
+                // Starts typing effect
+                typeWriter(currentFullText, 25, () => {
+                    actionEl.style.transition = "opacity 1s ease-in";
+                    actionEl.style.opacity = 1;
+                });
+            }, 2500);
+        }
+
+        function copyToClipboard() {
+            const textToCopy = `[Daily Wisdom]\n\nDear Friend,\n\n${currentFullText}\n\n[Action Step]\n${actionEl.textContent}`;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert("Letter copied to clipboard! You can now paste it anywhere.");
+            });
+        }
+
+        function resetForm() {
+            textarea.value = '';
+            charCount.textContent = '0';
+            document.getElementById('full-letter-section').classList.add('hidden');
+            document.getElementById('full-letter-section').classList.remove('flex');
+            document.getElementById('freemium-section').classList.add('hidden');
+            document.getElementById('freemium-section').classList.remove('flex');
+            document.getElementById('input-section').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "ceo": "connectai-main",
   "secretary": "connectai-main",
   "youtube": "connectai-main",
@@ -8,17 +7,4 @@
   "writer": "connectai-main",
   "editor": "connectai-main",
   "designer": "connectai-main",
-  "instagram": "connectai-main"
-=======
-  "ceo": "google/gemma-4-e4b",
-  "youtube": "google/gemma-4-e4b",
-  "instagram": "google/gemma-4-e4b",
-  "designer": "google/gemma-4-e4b",
-  "developer": "google/gemma-4-e4b",
-  "business": "google/gemma-4-e4b",
-  "secretary": "google/gemma-4-e4b",
-  "editor": "google/gemma-4-e4b",
-  "writer": "google/gemma-4-e4b",
-  "researcher": "google/gemma-4-e4b"
->>>>>>> origin/main
-}
+  "instagram": "connectai-main"}

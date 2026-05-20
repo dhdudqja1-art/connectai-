@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 # 💻 Developer — 도구 매니페스트
 
-_Developer 에이전트가 어떤 도구를 어디까지 자율적으로 쓸 수 있는지 정의합니다._
-=======
-# 💻 코다리 — 도구 매니페스트
-
-_코다리 에이전트가 어떤 도구를 어디까지 자율적으로 쓸 수 있는지 정의합니다._
->>>>>>> origin/main
-_매번 시스템 프롬프트로 주입되며, 텔레그램에서 `/tools`로 현재 상태 확인 가능._
+_Developer 에이전트가 어떤 도구를 어디까지 자율적으로 쓸 수 있는지 정의합니다.__매번 시스템 프롬프트로 주입되며, 텔레그램에서 `/tools`로 현재 상태 확인 가능._
 
 ---
 
@@ -28,7 +21,6 @@ AUTONOMY_LEVEL: 2
 
 ## 사용 가능한 도구
 
-<<<<<<< HEAD
 _⚠️ 이 에이전트의 도구는 모두 로드맵 단계입니다. 현재 LLM 추론만 가능하고, 외부 API 호출이나 파일 생성은 아직 동작하지 않습니다._
 
 ## 로드맵 (예정)
@@ -45,48 +37,6 @@ _company/projects/<name>/ 폴더 자동 생성 (vite/next/astro)
 
 ### `git_committer` _(예정)_
 작업 단위 자동 커밋
-=======
-### `web_init`
-5개 템플릿 자동 시작 — vite·next·astro·expo·vanilla
-
-- `enabled`: true
-- `requires_credentials`: `config.md` 참조
-
-### `pack_apply`
-두뇌의 키트 (landing·portfolio·dashboard·mobile)를 프로젝트에 자동 적용 + npm install + App.tsx 업데이트
-
-- `enabled`: true
-- `requires_credentials`: `config.md` 참조
-
-### `web_preview`
-dev server 백그라운드 실행 + URL 자동 추출
-
-- `enabled`: true
-- `requires_credentials`: `config.md` 참조
-
-### `pwa_setup`
-웹사이트 → PWA 변환 (manifest·sw·아이콘 자동 생성)
-
-- `enabled`: true
-- `requires_credentials`: `config.md` 참조
-
-### `lint_test`
-코드 수정 후 자가 검증 — tsc·py_compile·npm scripts 자동 실행 + 결과 리포트
-
-- `enabled`: true
-- `requires_credentials`: `config.md` 참조
-
-
----
-
-## 로드맵 (예정)
-
-_아래 도구들은 향후 버전에서 추가 예정. 지금은 카탈로그에만 있음._
-
-### `git_committer` _(예정)_
-작업 단위 자동 커밋 (의미 단위 + git add -A 금지)
->>>>>>> origin/main
-
 - 아직 구현되지 않은 도구입니다. 로드맵에 있으며 향후 버전에서 추가 예정.
 
 ### `deploy_cli` _(예정)_
@@ -94,14 +44,11 @@ Vercel/Netlify/Cloudflare 배포 (deploy --prod는 항상 승인)
 
 - 아직 구현되지 않은 도구입니다. 로드맵에 있으며 향후 버전에서 추가 예정.
 
-<<<<<<< HEAD
 ### `lint_test` _(예정)_
 테스트·린트·타입체크 자동 실행
 
 - 아직 구현되지 않은 도구입니다. 로드맵에 있으며 향후 버전에서 추가 예정.
 
-=======
->>>>>>> origin/main
 
 ---
 

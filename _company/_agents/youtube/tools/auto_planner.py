@@ -3,15 +3,12 @@
 duration (e.g. overnight). Reads its config from auto_planner.json."""
 import os, json, time, datetime, subprocess, sys
 
-<<<<<<< HEAD
-=======
 # 윈도우 한글 인코딩(CP949) 환경에서 이모지 출력 시 발생하는 UnicodeEncodeError 방지
 if sys.platform == "win32":
     import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
 
->>>>>>> origin/main
 HERE = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(HERE, "auto_planner.json")
 SNIPER_PATH = os.path.join(HERE, "trend_sniper.py")
